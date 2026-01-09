@@ -33,6 +33,8 @@ if (!$connStr) {
 
 $connectionString = $connStr;
 
+$containerName = "comprimidos";
+
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // Descargar archivo si se solicita
