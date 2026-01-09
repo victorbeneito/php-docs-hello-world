@@ -1,5 +1,13 @@
 <?php
 
+$testVar = getenv("AZURE_STORAGE_CONNECTION_STRING");
+
+if (!$testVar) {
+    die("<h1>ERROR CRÍTICO:</h1> <p>La variable de entorno no se está leyendo. Azure no la está pasando a PHP.</p>");
+} else {
+    echo "";
+}
+
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 ini_set('display_errors', 0);
 
