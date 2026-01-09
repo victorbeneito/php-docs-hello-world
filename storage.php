@@ -20,12 +20,18 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Configuración
-$connectionString = getenv("AZURE_STORAGE_CONNECTION_STRING");
-$containerName = "comprimidos";
+$connStr = getenv("AZURE_STORAGE_CONNECTION_STRING");
 
-if (!$connectionString) {
-    die("La variable AZURE_STORAGE_CONNECTION_STRING no está configurada.");
+if (!$connStr) {
+    // Si falla la variable de entorno, intentamos hardcode como fallback o mostramos error limpio
+    $connStr = "PON_AQUI_TU_CADENA_SI_QUIERES_FALLBACK"; 
 }
+
+if (!$connStr) {
+    die("Error: No hay cadena de conexión configurada.");
+}
+
+$connectionString = $connStr;
 
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
